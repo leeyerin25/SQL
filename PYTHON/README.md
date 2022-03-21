@@ -614,7 +614,7 @@ nr_letters= int(input("How many letters would you like in your password?\n"))
 nr_symbols = int(input(f"How many symbols would you like?\n"))
 nr_numbers = int(input(f"How many numbers would you like?\n"))
 ```
-오답
+오답 easy case
 ```
 #Eazy Level - Order not randomised:
 #e.g. 4 letter, 2 symbol, 2 number = JduE&!91
@@ -649,4 +649,21 @@ How many symbols would you like?
 How many numbers would you like?
 3
 dAw%!!592
+```
+오답 hard case
+```
+password_list = []
+
+for char in range (0,nr_letters): 
+	password_list.append(random.choice(letters))
+	
+for char in range (0,nr_symbols): 
+	password_list = password_list + random.choice(symbols)
+	
+for char in range (0,nr_numbers): 
+	password_list = password_list + random.choice(numbers)
+
+print(password_list)
+random.shuffle(password_list)
+print(password_list)
 ```
