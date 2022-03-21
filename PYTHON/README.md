@@ -495,7 +495,7 @@ for in 반복문 (IN에 속한 값 수만큼 반복이 돌아야 끝남)
 ```python
 student_heights = input("Input a list of student heights ").split()
 for n in range(0, len(student_heights)):
-  student_heights[n] = int(student_heights[n]) #이건 그냥 INT변환작업인지??
+  student_heights[n] = int(student_heights[n]) 
 # 🚨 Don't change the code above 👆
 
 height_total = 0
@@ -505,7 +505,7 @@ print(height_total)
 
 number=0
 for student in student_heights:
- number = number + 1 #이식은 INPUT값의 개수만 이용한건가?? +1을 통해서 140+160+180의 숫자만큼 1씩만 더해진다. (input값과 상관없이)
+ number = number + 1 # +1을 통해서 140+160+180의 숫자만큼 1씩만 더해진다. (input값과 상관없이)
 
  print(round(height_total/number))
 
@@ -519,17 +519,17 @@ Input a list of student heights<BR> 100 200 300 100<BR>
 ---
 ```python
 # 🚨 Don't change the code below 👇
-student_scores = input("Input a list of student scores ").split()
+student_scores = input("Input a list of student scores ").split()  #리스트로만듬 ["37","90","100"]
 for n in range(0, len(student_scores)):
-  student_scores[n] = int(student_scores[n])
-print(student_scores)
+  student_scores[n] = int(student_scores[n]) #숫자로바꾸는작업
+print(student_scores) # [37, 90, 100]
 
 #Write your code below this row 👇
 scoretotal =0
 for score in student_scores:
 	if score > scoretotal: # >를 통해 값을 쭉 비교하고
 		scoretotal = score # =를 통해 score > scoretotal 이 성립할시 값을 바꿔준다
-print(f"the score is :{scoretotal} .") #궁금한점 PRINT를 앞에붙히는것과 띄어쓰기해서 나온값이 다르던데 왜그런것인가??
+print(f"the score is :{scoretotal} .") #궁금한점 PRINT를 앞에붙히는것과 띄어쓰기해서 나온값이 다르던데 왜그런것인가?? for문 프린트가 되서 반복이 된것임.
 ```
 CONSOLE<BR>
 Input a list of student scores 140 150 187 100 195<BR>
@@ -541,7 +541,7 @@ the score is :195 .<BR>
 for in range 사용해서 값 전체더하기 (짝수만)
 ```
 total = 0
-for number in range(2,101,2): #2씩 커지게 = 짝수
+for number in range(2,101,2): #2씩 커지게
 	total = total+number
 print(total)
 ```
@@ -572,14 +572,14 @@ print(number)		#들어쓰기 틀림
 ```
 ```python
 for number in range(1,101):
-	if number %3==0 and number %5==0 : #조건이 많은걸 먼저쓰는건가?
+	if (number %3==0) and number %5==0 : #조건이 많은걸 먼저쓰는건가? 많은걸 먼저 써줘야 밑에서 안걸림 예시로 %5==0: 를 먼저쓰면 15 가 한바퀴 돌때 5에서 걸리고 %3과 %5 에서 걸리지 못함.
 		print("fizzbuzz")
 	elif number % 5 == 0:
 		print("buzz")
 	elif number %3==0 :
 		print("fizz")
 	else:
-		print(number)#적용할게 없을땐 그대로 써주기
+		print(number) #적용할게 없을땐 그대로 써주기
 
 
 CONSOLE<BR>
@@ -628,7 +628,7 @@ print(letters[random2] + "is gppd.")
 password = "" #문장만들기위해 공란으로
 
 for char in range (0,nr_letters):  #nr_letters INPUT 넣은회수만큼 돌게됨 -> 원하는 자릿수가 있다면 for in range로 나올 자릿수를 정해줘야함 
-#궁금한건 char 은 무슨 의미인가??
+#궁금한건 char 은 그냥이름, 여기선 변수가 안쓰이고 반복만쓰임
 	password = password + random.choice(letters)
 	
 for char in range (0,nr_symbols): 
@@ -651,19 +651,27 @@ How many numbers would you like?
 dAw%!!592
 ```
 오답 hard case
-```
+```py
 password_list = []
 
-for char in range (0,nr_letters): 
+for char in range(0,nr_letters): 
 	password_list.append(random.choice(letters))
 	
-for char in range (0,nr_symbols): 
+for char in range(0,nr_symbols): 
 	password_list = password_list + random.choice(symbols)
-	
-for char in range (0,nr_numbers): 
+	# list + str => 에러가 남 그냥 다 append로 써줘야 리스트로 넣어짐
+for char in range(0,nr_numbers): 
 	password_list = password_list + random.choice(numbers)
 
 print(password_list)
 random.shuffle(password_list)
 print(password_list)
+
+```
+```
+for _ char in enumerate(xxx)
+1 a
+2 b
+3 c
+4 d
 ```
