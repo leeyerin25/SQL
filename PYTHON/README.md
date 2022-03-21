@@ -490,3 +490,163 @@ Computer choose #RANDOM
 
 it's draw
 ```
+---
+for in 반복문 (IN에 속한 값 수만큼 반복이 돌아야 끝남)
+```python
+student_heights = input("Input a list of student heights ").split()
+for n in range(0, len(student_heights)):
+  student_heights[n] = int(student_heights[n]) #이건 그냥 INT변환작업인지??
+# 🚨 Don't change the code above 👆
+
+height_total = 0
+for height in student_heights: 
+ height_total = height_total + height #+height를 통해서 ex)140+160+180 이렇게 반복되어 더해짐
+print(height_total)
+
+number=0
+for student in student_heights:
+ number = number + 1 #이식은 INPUT값의 개수만 이용한건가?? +1을 통해서 140+160+180의 숫자만큼 1씩만 더해진다. (input값과 상관없이)
+
+ print(round(height_total/number))
+
+```
+CONSOLE<BR>
+Input a list of student heights<BR> 100 200 300 100<BR>
+700<BR>
+4<BR>S
+175
+
+---
+```python
+# 🚨 Don't change the code below 👇
+student_scores = input("Input a list of student scores ").split()
+for n in range(0, len(student_scores)):
+  student_scores[n] = int(student_scores[n])
+print(student_scores)
+
+#Write your code below this row 👇
+scoretotal =0
+for score in student_scores:
+	if score > scoretotal: # >를 통해 값을 쭉 비교하고
+		scoretotal = score # =를 통해 score > scoretotal 이 성립할시 값을 바꿔준다
+print(f"the score is :{scoretotal} .") #궁금한점 PRINT를 앞에붙히는것과 띄어쓰기해서 나온값이 다르던데 왜그런것인가??
+```
+CONSOLE<BR>
+Input a list of student scores 140 150 187 100 195<BR>
+[140, 150, 187, 100, 195]<BR>
+the score is :195 .<BR>
+<BR><BR><BR>
+
+---
+for in range 사용해서 값 전체더하기 (짝수만)
+```
+total = 0
+for number in range(2,101,2): #2씩 커지게 = 짝수
+	total = total+number
+print(total)
+```
+``` 
+total = 0
+for number in range(2,101,2): 
+	if number %2 == 0:  #나머지=0 인 값을 찾기=짝수
+  total += number
+print(total)
+```
+CONSOLE<BR>
+2550
+<BR><BR>
+
+---
+FOR IN RANGE + IF 함수 <BR>
+오답
+```
+#Write your code below this row 👇
+for number in range(1,101):
+	if number %3==0 :
+		print("Fizz")
+	elif number % 5 == 0:
+		print("buzz")
+	elif number %3==0 and number %5==0 :
+		print("fizzbuzz")
+print(number)		#들어쓰기 틀림
+```
+```python
+for number in range(1,101):
+	if number %3==0 and number %5==0 : #조건이 많은걸 먼저쓰는건가?
+		print("fizzbuzz")
+	elif number % 5 == 0:
+		print("buzz")
+	elif number %3==0 :
+		print("fizz")
+	else:
+		print(number)#적용할게 없을땐 그대로 써주기
+
+
+CONSOLE<BR>
+1
+2
+fizz
+4
+buzz
+fizz
+7
+8
+fizz
+buzz
+11
+fizz
+13
+14
+fizzbuzz
+16
+17 ....
+```
+
+```python
+#Password Generator Project
+import random
+letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
+
+print("Welcome to the PyPassword Generator!")
+nr_letters= int(input("How many letters would you like in your password?\n")) 
+nr_symbols = int(input(f"How many symbols would you like?\n"))
+nr_numbers = int(input(f"How many numbers would you like?\n"))
+```
+오답
+```
+#Eazy Level - Order not randomised:
+#e.g. 4 letter, 2 symbol, 2 number = JduE&!91
+password = ""
+
+random2 = random.randint(0,2)   #랜덤만 써선 못하나??
+print(letters[random2] + "is gppd.")
+```
+정답 easy case
+```py
+password = "" #문장만들기위해 공란으로
+
+for char in range (0,nr_letters):  #nr_letters INPUT 넣은회수만큼 돌게됨 -> 원하는 자릿수가 있다면 for in range로 나올 자릿수를 정해줘야함 
+#궁금한건 char 은 무슨 의미인가??
+	password = password + random.choice(letters)
+	
+for char in range (0,nr_symbols): 
+	password = password + random.choice(symbols)
+	
+for char in range (0,nr_numbers): 
+	password = password + random.choice(numbers)
+
+ print(password)
+
+ ---
+CONSOLE
+Welcome to the PyPassword Generator!
+How many letters would you like in your password?
+3
+How many symbols would you like?
+3
+How many numbers would you like?
+3
+dAw%!!592
+```
