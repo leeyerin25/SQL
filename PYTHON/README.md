@@ -675,3 +675,81 @@ for _ char in enumerate(xxx)
 3 c
 4 d
 ```
+
+
+3/22<br>
+함수가이드 = pep8<br>
+
+```
+1.리펙터링(함수를 간단히 다시 만드는거)
+함수 기존의걸 이용해서 새로만들기
+def 함수이름():
+	합칠함수()
+	합칠함수()
+
+함수이름 #시행됨
+
+2. 파라미터	
+def 함수이름(변수이름):
+	print("쓰고싶은말 {변수이름}" ) #보여주는용도라서 이용안됨
+	return #실제내보내는용도
+
+print(함수이름)
+
+함수이름{넣고싶은거}
+
+출력: 쓰고싶은말 + 넣고싶은거
+```
+https://reeborg.ca/reeborg.html<br>
+허들게임 난이도1풀이
+```py
+def turn_right():
+    turn_left()
+    turn_left()
+    turn_left()
+    
+def one():
+    move()
+    turn_left()
+    move()
+    turn_right() #함수안에 함수
+    move()
+    turn_right()
+    move()
+    turn_left()
+
+i = 0    
+while i < 6: # 5까지 5번 반복
+    one()
+    i += 1  # 위 one 이라는 함수를 5번 반복시킴
+
+while True: # 무한반복
+
+```
+허들게임 난이도3 풀이
+```py
+def turn_right():
+    turn_left()
+    turn_left()
+    turn_left()
+    
+while not at_goal():
+
+    #일단 가 (앞이 뚫려있으면) 막혀있으면 가지말고..
+    if front_is_clear():
+        move()
+
+
+    # 벽을 만났는데 오른쪽이 막혀있을경우 turn_left
+    if (not front_is_clear()) and wall_on_right():
+        turn_left() #if를 같은 열 위치에 두번쓸경우 : 두 if전부 실행시킴
+
+
+    # 앞이 뚫려있고, 오른쪽이 막혀있음.
+    elif front_is_clear() and (not wall_on_right()):
+        turn_right() #if 열 위치에 elif 를 쓸경우 : if 가 해당하지 않을때 elif 로 내려옴 => 조건의 중요도를 부여해서 차례로 쓰는게 중요함
+
+    # 앞이 막혀있고, 오른쪽은 ~~~
+    elif (not front_is_clear()) and (not wall_on_right()):
+        turn_right()
+	```
