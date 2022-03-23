@@ -700,14 +700,20 @@ print(함수이름)
 
 출력: 쓰고싶은말 + 넣고싶은거
 ```
+<br><br>
+
+---
+
 https://reeborg.ca/reeborg.html<br>
-허들게임 난이도1풀이
+허들게임 난이도1 풀이
 ```py
-def turn_right():
+def turn_right(): #def 다음줄은 무조건 띄어쓰기
     turn_left()
     turn_left()
     turn_left()
-    
+
+ #시행시에는 끝에 붙혀서 함수이름써서 호출
+
 def one():
     move()
     turn_left()
@@ -718,6 +724,18 @@ def one():
     move()
     turn_left()
 
+def 예시():
+    a = 3
+    if a > 2:
+      print("a가2보다 클경우 프린트해야함") #프린트도 함수의 기능이기때문에 위 if 줄보다 더 안쪽으로 작성한다.
+console
+def()
+:a가2보다 클경우 프린트해야함
+
+
+
+
+
 i = 0    
 while i < 6: # 5까지 5번 반복
     one()
@@ -726,8 +744,10 @@ while i < 6: # 5까지 5번 반복
 while True: # 무한반복
 
 ```
+<br>
 허들게임 난이도3 풀이
-```py
+
+```python
 def turn_right():
     turn_left()
     turn_left()
@@ -747,9 +767,109 @@ while not at_goal():
 
     # 앞이 뚫려있고, 오른쪽이 막혀있음.
     elif front_is_clear() and (not wall_on_right()):
-        turn_right() #if 열 위치에 elif 를 쓸경우 : if 가 해당하지 않을때 elif 로 내려옴 => 조건의 중요도를 부여해서 차례로 쓰는게 중요함
+        turn_right() #if 열 위치에 elif 를 쓸경우 : 위의 if 가 해당하지 않을때 elif 로 내려옴 => 조건의 중요도를 부여해서 차례로 쓰는게 중요함
 
     # 앞이 막혀있고, 오른쪽은 ~~~
     elif (not front_is_clear()) and (not wall_on_right()):
         turn_right()
 	```
+
+  <br>
+허들게임 난이도4 풀이
+
+```python
+def turn_right():
+    turn_left()
+    turn_left()
+    turn_left()
+
+def jump():
+    turn left()       #왼쪽으로돌아서
+    while wall_on_right(): #오른쪽에 벽이 있는동안에는
+        move()        #계속가라 
+    turn_right()   #오른쪽을 봐라 (벽이없는순간이 와야 이 행의 함수가 실행됨 맞나용??)
+    move()          #한칸앞 
+    turn_right()    #다시 오른쪽
+    while front_is_clear(): #앞이 비어있는동안에는
+          move()            #직진
+    turn left()    #왼쪽을 봐라(앞이 막혀있으면 이함수가 실행됨 . ?)
+    
+    #다시 위로 반복하면 어떠한 허들도 다 뛰어넘을수잇는 함수가 됨
+    
+while not at_goal(): 
+    if wall_in_front():
+        jump()
+    else:
+        move()
+
+**나중에 day6 에스케이핑더 메이즈 프젝하기!!
+```
+
+
+
+<br><br> HANGMAN GAME<br>
+3/23-day7<Br>구상화시키기
+
+step1 
+
+```py
+word_list = ["aardvark", "baboon", "camel"]
+
+#TODO-1 - Randomly choose a word from the word_list and assign it to a variable called chosen_word.
+
+import random
+choose = random.choice(word_list)
+
+
+#TODO-2 - Ask the user to guess a letter and assign their answer to a variable called guess. Make guess lowercase.
+
+guess = input("gets a letter: ").lower()
+
+#TODO-3 - Check if the letter the user guessed (guess) is one of the letters in the chosen_word.
+
+for a in choose : #choose로 랜덤선택된 단어들이 쪼개져서 a로 들어가는게 신기함 -> str 이 들어가면 하나하나 들어가지는것인가용??
+	if a == guess :
+		print("right")
+	else:
+		print("worng")
+		
+```
+step 2
+```py
+
+import random
+word_list = ["aardvark", "baboon", "camel"]
+chosen_word = random.choice(word_list)
+
+#Testing code
+print(f'Pssst, the solution is {chosen_word}.')
+
+#TODO-1: - Create an empty List called display.
+#For each letter in the chosen_word, add a "_" to 'display'.
+#So if the chosen_word was "apple", display should be ["_", "_", "_", "_", "_"] with 5 "_" representing each letter to guess.
+
+display = []
+length = len(chosen_word)
+for _ in range(length):
+	display += "_"
+print(display)
+
+guess = input("Guess a letter: ").lower()
+
+
+#TODO-2: - Loop through each position in the chosen_word;
+#If the letter at that position matches 'guess' then reveal that letter in the display at that position.
+#e.g. If the user guessed "p" and the chosen word was "apple", then display should be ["_", "p", "p", "_", "_"].
+
+for position in range(length): 
+	letter = chosen_word[position] #chose_word 단어의 첫번째 알파벳이 letter 이 된다
+	if letter == guess: #letter알파벳과 guess에넣은 알파벳하나가 같다면! 아까 그 display "-""-" 이 자리를 letter 알파벳으로 바꿔치고 아니면 말아라
+		display[position] = letter
+
+#TODO-3: - Print 'display' and you should see the guessed letter in the correct position and every other letter replace with "_".
+#Hint - Don't worry about getting the user to guess the next letter. We'll tackle that in step 3.
+
+print(display)
+
+```
+
