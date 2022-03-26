@@ -854,6 +854,8 @@ for _ in range(length):
 	display += "_" #display 라는 리스트 [] 안에 "_"를 추가해주는 단계 ????
 print(display)
 
+#list comprehension 리스트에 하나씩 추가
+
 guess = input("Guess a letter: ").lower()
 
 
@@ -1010,8 +1012,11 @@ while not end_of_game:
             print("You lose.")
 
     #Join all the elements in the list and turn it into a String.
-    print(f"{' '.join(display)}") #join을 통해서 ''부분이 딱붙어서 나옴 
-    #f스트링{} 안에 display 를 조인해주기위해서 ()가로를쓴건지??
+    print(f"{' '.join(display)}") #join은 리스트안에 한단어씩을 ''부분이 딱붙어서 나옴 
+    #f스트링{} 안에 display 를 조인해주기위해서 ()가로를 씀
+
+my_set = {"kim","park"} 셋(집합)은 순서가없음
+print(" ".join(my_set)) -> 무작위로 조인됨, 조인시 결과물 : kim park
 
     #Check if user has got all letters.
     if "_" not in display:
@@ -1026,3 +1031,107 @@ while 게임이 끝날때까지:<br>
  if<br>if<br>
  (게임이 끝날때를 정의해줘야함)<br>
  게임 조건 순서를 구상화시키는게 중요하다
+
+ continue
+ pass
+ break
+ ** 반복문에 진짜 중요 **
+
+
+ ---
+ 3/26<br>
+ 1.def 사용법<br>
+ ```py
+def add(a, b):
+    return a + b  # add 라는 함수를 또 이용해서 쓰고싶으면 return값으로 정의해주기.
+
+num1 = 1
+num2 = 2
+
+c = add(num1, num2)
+c+1
+ ```
+2.def 응용법 (def 안에 for, if, enumerate, index)
+```py
+#def는 내가 원하는 조건을 넣어 만드는 함수, 여기서는 3개의 파라미터를 만들고, 해당된느 각각 조건을 만들어, 나만의 함수를 만들었다. : 목적: 알파벳 순서 원하는만큼 밀기
+
+n_list=["a","b","c","d","e","f"]
+
+# cbd -> edf
+# 2
+
+def number(text, n, what): #text는 변환하려는 알파벳이고, n은 움직이고싶은 숫자이며, what은 앞으로갈지 뒤로갈지 정하는것으로 하고싶다. 이제 함수를 만들어보자~
+
+
+step1
+    index_list = [] #먼저 리스트를 생성했음
+    for alphabet in text: #사람으로부터 받은 text를 alphabet에 넣고. 
+        index_list.append(n_list.index(alphabet))
+    #반복문을 이용해 그 alphabet이 n_list에 있는 모든순서를 뽑음 (숫자는 -> index이용해서 추출)
+    #ex) c면 n_list 에서 2번째, b면 1번째 이렇게 뽑고 append를 이용해 index_list에 뒤로 붙히고,  for문이 반복되면서 하나씩 채워진다 
+    print(index_list) #프린트된 결과는 [2,1,3]
+
+    #이렇게 1번째 피라미터인 text 에 대해 조건을 걸었다. text에 넣는 알파벳을 숫자로 변환시키기.
+step2
+    for index, i in enumerate(index_list): #그 index_list를 enumerate를 통해 숫자(index)와 i 로 변경한다.
+        if what == "e": #여기서 파라미터3번째 조건 what을 생성한다. e 값을 넣을경우 바로 아래 함수가 실행된다.
+            index_list[index] = i + n  
+        else:
+            index_list[index] = i - n #근데 난 d를 넣어서 이게 실행됨. 
+            #ex) [2,1,3] 의[0]번째 = 2 - 1 = 1
+            #ex) [2,1,3] 의[1]번째 = 1 - 1 = 0 ....
+
+    print(index_list) #[1, 0, 2]
+  #바꾸는 이유는? 움직이고 싶은 자리의 알파벳을 구하려면 자리수를 먼저 알아야하니까.
+
+step3   
+    decode_text = "" #알파벳으로 만들건데 일단 공란을 만들어줌
+    for i in index_list: #마지막으로 완성된 index_list [1, 0, 2] 는 차례로 i로 들어간다
+        decode_text += n_list[i] #그 i의 숫자는 아까 초기에 n_list에 해당되어 실제 알파벳으로 다시 변한이된다
+    print(decode_text) #프린트하면 완성
+
+
+#실제 사용자가 넣는 조건 : cbd 를 1칸씩 뒤로 옮겨주세요!  
+number(text="cbd", n=1, what="d")
+```
+console<br>[2, 1, 3]<br>[1, 0, 2]<br>
+bac<br>
+
+3.+ index 개념
+```py
+my_list = ["a","b","c","d"]
+
+my_list.index("a")
+```
+<br>console<br>
+0<br><br><br>
+4. def응용법2 (def 안에 while 넣기)<br>
+```py
+alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z','a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+
+# 게임의 끝을 정하기 위해 while 넣어 go,stop을 결정합니다.
+
+def caesar(start_text, shift_amount, cipher_direction):
+    end_text = ""
+    for letter in start_text:
+        position = alphabet.index(letter)
+        if cipher_direction == "decode":
+            shift_amount = shift_amount * -1
+        new_position = position + shift_amount
+        end_text += alphabet[new_position]
+    print(f"here's the {cipher_direction}d result: {end_text}")
+
+
+
+while True:
+    ed = input("encode?decode:")
+    test = input("input text:")
+    shift = int(input("input shift:"))
+    caesar(test, shift, ed)
+    
+    user_input = input("한번더?")
+    if user_input == "yes":
+        pass
+    elif user_input == "no":
+        break
+```
