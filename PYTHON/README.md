@@ -1032,10 +1032,11 @@ while 게임이 끝날때까지:<br>
  (게임이 끝날때를 정의해줘야함)<br>
  게임 조건 순서를 구상화시키는게 중요하다
 
- continue
- pass
- break
- ** 반복문에 진짜 중요 **
+*반복문 명령어*<br>
+ continue : 해당 부분 다음 loop은 계속 진행<br>
+ pass : 그냥 쭉 진행 <br>
+ break : 멈춰줌 <br>
+ 
 
 
  ---
@@ -1114,9 +1115,9 @@ alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n'
 def caesar(start_text, shift_amount, cipher_direction):
     end_text = ""
     for letter in start_text:
-        position = alphabet.index(letter)
+        position = alphabet.index(letter) #뽑은 알파벳을 숫자로변환해서 position에 담음
         if cipher_direction == "decode":
-            shift_amount = shift_amount * -1
+            shift_amount = shift_amount * -1 #오류부분이있음
         new_position = position + shift_amount
         end_text += alphabet[new_position]
     print(f"here's the {cipher_direction}d result: {end_text}")
