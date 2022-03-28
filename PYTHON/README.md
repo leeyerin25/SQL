@@ -1136,3 +1136,135 @@ while True:
     elif user_input == "no":
         break
 ```
+
+---
+3/29 day9
+<Br>
+```py
+student_scores = {
+  "Harry": 81,  #한키에는 하나의 value 만!
+  "Ron": 78,
+  "Hermione": 99, 
+  "Draco": 74,
+  "Neville": 62,
+}
+# 🚨 Don't change the code above 👆
+
+#TODO-1: Create an empty dictionary called student_grades.
+
+student_grades={}
+
+#TODO-2: Write your code below to add the grades to student_grades.👇
+
+for student in student_scores : #student_scores의 key부분인 이름이 뽑힘
+	score = student_scores[student] #81=student_scores[harry] 
+	if score > 90:
+		student_grades[student] = "Outstanding"
+	elif score > 80:
+		student_grades[student] = "exptable"
+	elif score > 70:
+		student_grades[student] = "acceptable"
+	elif score :
+		student_grades[student] = "fail"
+
+print(student_grades)
+
+```
+
+console
+{'Harry': 'exptable', 'Ron': 'acceptable', 'Hermione': 'Outstanding', 'Draco': 'acceptable', 'Neville': 'fail'}
+
+```py
+travel_log = [
+{
+  "country": "France",
+  "visits": 12,
+  "cities": ["Paris", "Lille", "Dijon"]
+},
+{
+  "country": "Germany",
+  "visits": 5,
+  "cities": ["Berlin", "Hamburg", "Stuttgart"]
+},
+]
+#🚨 Do NOT change the code above
+
+#TODO: Write the function that will allow new countries
+#to be added to the travel_log. 👇
+
+def add_new_country(country_visited, times_visited, cities_visited):
+	new_country = {}
+	new_country["country"] = country_visited 
+    #"country":"russia"
+	new_country["visits"] = times_visited
+    #"visits" : 2
+	new_country["cities"] = cities_visited
+	travel_log.append(new_country) 
+    #위에 뽑힌 "country":"russia" 와 "visits" : 2 가 travel.log 뒤에 하나씩 붙혀짐
+	
+#def 를 input 처럼 쓰는법 ??? 사람한테 입력받아서 출력할수없나..
+
+#🚨 Do not change the code below
+add_new_country("Russia", 2, ["Moscow", "Saint Petersburg"])
+print(travel_log)
+
+
+```
+console <br>
+[{'country': 'France', 'visits': 12, 'cities': ['Paris', 'Lille', 'Dijon']}, {'country': 'Germany', 'visits': 5, 'cities': ['Berlin', 'Hamburg', 'Stuttgart']}, {'country': 'Russia', 'visits': 2, 'cities': ['Moscow', 'Saint Petersburg']}] <br>
+
+딕셔너리 퀴즈<br>
+1. add하는법 정리
+리스트["c"]=내용 <br> 퀴즈 모르겠음
+2. 오류 정리<br>
+3. 원하는거 출력하는 방법
+
+```py
+Which line of code will print "Steak"?
+
+order = {
+    "starter": {1: "Salad", 2: "Soup"},
+    "main": {1: ["Burger", "Fries"], 2: ["Steak"]},
+    "dessert": {1: ["Ice Cream"], 2: []},
+
+방법 : print(order["main"][2][0])
+# [2]는 key 이름 , [0]은 불러올 내용의 순서
+```
+
+
+AUCTION PROGRAM
+```py
+
+from replit import clear #???????
+#HINT: You can call clear() to clear the output in the console.
+
+from art import logo
+print(logo)
+
+bids = {}
+
+name = input("what is your name?")
+price = input("what is your bids?")
+continu = input("wanna go? yes or no")
+
+def bid(name, price, continu) 
+	bids["이름"] = name
+	bids["돈"] = price
+	bids["고?"] = continu
+    bids.append(bid)
+    # 로 bids 리스트에 넣을예정. ?????
+
+while True:
+    name = input("what is your name?")
+    price = input("what is your bids?")
+    continu = input("wanna go? yes or no")
+    bid(name, price, continu)
+    
+    if ucontinu == "yes":
+        pass
+    elif continu == "no":
+        break
+
+#리스트 비교해서 가장 큰걸 출력할 예정...............
+
+```
