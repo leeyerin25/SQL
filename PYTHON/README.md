@@ -1202,7 +1202,10 @@ def add_new_country(country_visited, times_visited, cities_visited):
 	travel_log.append(new_country) 
     #위에 뽑힌 "country":"russia" 와 "visits" : 2 가 travel.log 뒤에 하나씩 붙혀짐
 	
-#def 를 input 처럼 쓰는법 ??? 사람한테 입력받아서 출력할수없나..
+
+(def 로 함수를 만든건
+아래처럼 직접써주거나
+return 값을 써서 이용하거나.)
 
 #🚨 Do not change the code below
 add_new_country("Russia", 2, ["Moscow", "Saint Petersburg"])
@@ -1213,11 +1216,28 @@ print(travel_log)
 console <br>
 [{'country': 'France', 'visits': 12, 'cities': ['Paris', 'Lille', 'Dijon']}, {'country': 'Germany', 'visits': 5, 'cities': ['Berlin', 'Hamburg', 'Stuttgart']}, {'country': 'Russia', 'visits': 2, 'cities': ['Moscow', 'Saint Petersburg']}] <br>
 
-딕셔너리 퀴즈<br>
+*딕셔너리 퀴즈* <br>
+
+```
 1. add하는법 정리
-리스트["c"]=내용 <br> 퀴즈 모르겠음
+리스트["c"]=내용 
+= = = x  
+.append()  는 딕셔너리에서 사용 불가능. 리스트만 가능
+
+
 2. 오류 정리<br>
+
+dict = {"a" : 1
+"b" : 2
+"c" : 3
+}
+for key in dict:
+    dict[key] +=1
+
+console : a:2   b:3   c:4
+
 3. 원하는거 출력하는 방법
+```
 
 ```py
 Which line of code will print "Steak"?
@@ -1241,30 +1261,70 @@ from replit import clear #???????
 from art import logo
 print(logo)
 
-bids = {}
 
-name = input("what is your name?")
-price = input("what is your bids?")
-continu = input("wanna go? yes or no")
-
-def bid(name, price, continu) 
+def bid(name, price)
+    bids = {} 
 	bids["이름"] = name
 	bids["돈"] = price
-	bids["고?"] = continu
     bids.append(bid)
-    # 로 bids 리스트에 넣을예정. ?????
+
 
 while True:
     name = input("what is your name?")
     price = input("what is your bids?")
     continu = input("wanna go? yes or no")
-    bid(name, price, continu)
+    bid(name, price)
     
+
     if ucontinu == "yes":
         pass
     elif continu == "no":
+        #여기서 제일높은 name과 price 의 가격을 추출할수있는 조건을 걸면 됨.
         break
 
-#리스트 비교해서 가장 큰걸 출력할 예정...............
-
 ```
+
+```py
+*딕셔너리에 중요한 규칙*
+
+1. 콤마로 구분한다
+
+my_dict = {
+    "key" : value, #콤마로 구분
+    "key2": value,
+        ...
+}
+
+
+
+2. for문을 그냥 돌리면 키만 나온다.
+
+for key in my_dict : 
+    print(key)
+
+console : "key" , "key2"
+
+
+
+
+3. items를 쓰고 for문을 돌리면 키,value가 같이 나온다.
+
+for key,value in my_dict.items(): # .items() 쓰면 key값과 value값이 같이 나옴
+    print(key, value)
+
+console : "key" : value, "key2": value,
+
+
+
+4. 딕셔너리안에 원하는걸 추출하는 방법
+
+order = {
+    "starter": {1: "Salad", 2: "Soup"},
+    "main": {1: ["Burger", "Fries"], 2: ["Steak"]},
+    "dessert": {1: ["Ice Cream"], 2: []},
+}
+
+Steak 추출하는법은
+order["main"][2][0] #메인리스트에서 2번째리스트에 0번째단어를 추출함
+
+```   
