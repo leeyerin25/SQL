@@ -198,16 +198,21 @@ year = int(input("Which year do you want to check? "))
 
 #Write your code below this line 👇
 
-if year%4==0:
- if year%100==0:  #여기서 100으로 나눈값에 나머지가 0일시 "LEAP YEAR"로 출력되는
-   if year%400==0:
-    print("Leap year.")
+if year%4==0: #4로 나눈 나머지가 0일시 윤년 아님
+ if year%100==0:  #여기서 100으로 나눈값에 나머지가 0일시 윤년임
+   if year%400==0: #근데 여기까지 
+    print("Leap year.") 
    else:
     print("Not Leap year." ) # %400 ->0 
  else:
   print("Leap year." ) # %100->0 
 else:
  print("Not leap year." ) # %4 
+
+#4로나눴을때 0 -> 윤년아님
+#4로나눳을때 0, 100으로나눳을때0 -> 윤년
+#4로나눳을때 0, 100으로나눳을때0, 400으로 나눴을때가 0 -> 윤년
+
  ```
 <br>
 <br>
@@ -1203,9 +1208,14 @@ def add_new_country(country_visited, times_visited, cities_visited):
     #위에 뽑힌 "country":"russia" 와 "visits" : 2 가 travel.log 뒤에 하나씩 붙혀짐
 	
 
-(def 로 함수를 만든건
-아래처럼 직접써주거나
-return 값을 써서 이용하거나.)
+def 로 함수를 만든건
+아래처럼 직접써주거나 
+
+or
+
+return 값을 써서 이용
+ex) print(def이름(input(a,b)))
+
 
 #🚨 Do not change the code below
 add_new_country("Russia", 2, ["Moscow", "Saint Petersburg"])
@@ -1328,3 +1338,212 @@ Steak 추출하는법은
 order["main"][2][0] #메인리스트에서 2번째리스트에 0번째단어를 추출함
 
 ```   
+
+
+3/30 day10:return<br>
+def 안에 if,return 넣기
+
+```py
+def format_name(f_name, l_name):
+  if f_name == "" or l_name == "":
+    return "You didn't provide valid inputs."
+  formated_f_name = f_name.title()  #title은 Yerin 처럼 앞자리만 대문자로 바꿔줌
+  formated_l_name = l_name.title()
+  f"Result: {formated_f_name} {formated_l_name}"
+
+#Storing output in a variable
+formatted_name = format_name(input("Your first name: "), input("Your last name: "))
+print(formatted_name)
+```
+
+```py
+def is_leap(year):
+  if year % 4 == 0:
+    if year % 100 == 0:
+      if year % 400 == 0:
+        return True
+      else:
+        return False
+    else:
+      return True
+  else:
+    return False
+
+month_days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+
+def days_in_month(year, month):
+	if is_leap(year) and month == 2:   #is_leap(year)이 true and month가 2 일경우에만 29를 리턴해줌. 신기하다 true 와 false는 함수인건강??
+		return 29
+	return month_days [month - 1]
+  
+#🚨 Do NOT change any of the code below 
+year = int(input("Enter a year: "))
+month = int(input("Enter a month: "))
+days = days_in_month(year, month)
+print(days)
+```
+console<br>
+Enter a year: 2020<br>
+Enter a month: 2<br>
+29
+<br> 
+
+**퀴즈**
+
+```py
+1.What would you predict to be the result of running the following code?
+
+def outer_function(a, b):
+    def inner_function(c, d): #2. 그리고 밑에  inner_function 을 return을 해서 바로 이 똑같은 함수가 시행이 되는듯 ???
+        return c + d
+    return inner_function(a, b) #1. outer_function(a, b)에 대한 return값인 이줄이 바로 실행되는듯 ???
+ 
+result = outer_function(5, 10)
+print(result)
+
+console=15
+
+
+
+
+2.What will be printed in the console after running the following code?
+
+def my_function(a):
+    if a < 40:
+        return   #return 다음에 바로 있어야되는데 없어서 none값!!
+        print("Terrible")
+    if a < 80:
+        return "Pass"
+    else:
+        return "Great"
+print(my_function(25))
+
+console=none
+
+```
+
+계산기문제
+```py
+def add(n1,n2):
+	return n1 + n2
+
+def sub(n1,n2):
+	return n1-n2
+
+def mul(n1,n2):
+	return n1*n2
+
+def div(n1,n2):
+	return n1/n2
+
+# if choose == '+' :
+# 	add(add_1,add_2)
+#딕셔너리 만들기!!
+calculate={
+	"+":add,
+	"-":sub,
+	"*":mul,
+	"/":div
+}
+
+num1=(input("what 1?"))
+num2=(input("what 2?"))
+
+choose=(input("what do u want?"))
+#for symbol in calculate:
+symbol = calculate[choose] #여기서오류...
+print(symbol)   
+result = symbol(num1, num2)
+print(result)
+```
+계산기문제 완성본
+```py
+from replit import clear
+
+def add(n1, n2):
+  return n1 + n2
+
+def subtract(n1, n2):
+  return n1 - n2
+
+def multiply(n1, n2):
+  return n1 * n2
+
+def divide(n1, n2):
+  return n1 / n2
+
+operations = {
+  "+": add,
+  "-": subtract,
+  "*": multiply,
+  "/": divide
+}
+
+def calculator(): #def calculator 안에 for 문과 while 문을 넣음, 보면 밑에 calculator()를 따로 써줘야 이 함수가 시행됨
+  
+
+  num1 = float(input("What's the first number?: ")) #num1 만 따로 빼놓음
+  for symbol in operations:
+    print(symbol)
+  should_continue = True  #true로 가정함으로써 while문이 시행된건가? ㅇㅇ
+#for문으로 꼭 돌리지 않아도 while 반복을 위해선 true 라는 가정이 필요한거. 그러니까 calculaator()이 함수에 ture 란 스위치를 바로 넣어두됨
+ 
+  while should_continue:
+    operation_symbol = input("Pick an operation: ")
+    num2 = float(input("What's the next number?: "))
+    calculation_function = operations[operation_symbol]
+    answer = calculation_function(num1, num2)
+    print(f"{num1} {operation_symbol} {num2} = {answer}")
+
+    if input(f"Type 'y' to continue calculating with {answer}, or type 'n' to start a new calculation: ") == 'y': #밑에게 false 니까 자동으로 이 y는 true가 됨
+      num1 = answer
+    else:
+      should_continue = False
+      clear()
+      calculator()
+
+calculator()
+```
+혼자 만들어봄
+```py
+
+
+def add(n1, n2):
+  return n1 + n2
+
+def subtract(n1, n2):
+  return n1 - n2
+
+def multiply(n1, n2):
+  return n1 * n2
+
+def divide(n1, n2):
+  return n1 / n2
+
+operations = {
+  "+": add,
+  "-": subtract,
+  "*": multiply,
+  "/": divide
+}
+
+#num1 , num2 , 사람이 원하면 계산된거에서 식과 num2만 바꿔서 쭉 진행시키고파
+
+def calculator():
+	num1 = float(input("what is yout first number??"))
+	go = True # =대신 : 써서 틀림
+	
+	while go:
+		symbol = input("what symbol?") #와일문안에 띄어쓰기안해서 틀림
+		oper_2 = operations[symbol]
+		num2 = float(input("what is yout second number??")) #float 안써서틀림
+		result = oper_2(num1,num2)
+		print(f"{num1} {symbol} {num2} = {result}")
+		if input("you want keep y or n") == 'y' :  # y ''로 안감싸서 틀림
+			num1 = result
+		else :
+			go : False
+	
+calculator()
+
+```
