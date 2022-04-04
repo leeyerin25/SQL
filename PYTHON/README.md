@@ -1041,10 +1041,9 @@ while 게임이 끝날때까지:<br>
  continue : 해당 부분 다음 loop은 계속 진행<br>
  pass : 그냥 쭉 진행 <br>
  break : 멈춰줌 <br>
- 
-
 
  ---
+ <br><br><br>
  3/26<br>
  1.def 사용법<br>
  ```py
@@ -1100,9 +1099,14 @@ step3
 #실제 사용자가 넣는 조건 : cbd 를 1칸씩 뒤로 옮겨주세요!  
 number(text="cbd", n=1, what="d")
 ```
-console<br>[2, 1, 3]<br>[1, 0, 2]<br>
-bac<br>
+```
+console
 
+[2, 1, 3]
+[1, 0, 2]
+bac
+```
+<br><br><br>
 3.+ index 개념
 ```py
 my_list = ["a","b","c","d"]
@@ -1143,6 +1147,7 @@ while True:
 ```
 
 ---
+<br><br><br>
 3/29 day9
 <Br>
 ```py
@@ -1175,9 +1180,12 @@ for student in student_scores : #student_scores의 key부분인 이름이 뽑힘
 print(student_grades)
 
 ```
-
+```
 console
 {'Harry': 'exptable', 'Ron': 'acceptable', 'Hermione': 'Outstanding', 'Draco': 'acceptable', 'Neville': 'fail'}
+```
+<br>
+<br><br>
 
 ```py
 travel_log = [
@@ -1223,8 +1231,12 @@ print(travel_log)
 
 
 ```
-console <br>
-[{'country': 'France', 'visits': 12, 'cities': ['Paris', 'Lille', 'Dijon']}, {'country': 'Germany', 'visits': 5, 'cities': ['Berlin', 'Hamburg', 'Stuttgart']}, {'country': 'Russia', 'visits': 2, 'cities': ['Moscow', 'Saint Petersburg']}] <br>
+```
+console 
+
+[{'country': 'France', 'visits': 12, 'cities': ['Paris', 'Lille', 'Dijon']}, {'country': 'Germany', 'visits': 5, 'cities': ['Berlin', 'Hamburg', 'Stuttgart']}, {'country': 'Russia', 'visits': 2, 'cities': ['Moscow', 'Saint Petersburg']}] 
+```
+<br><br><br>
 
 *딕셔너리 퀴즈* <br>
 
@@ -1339,8 +1351,8 @@ order["main"][2][0] #메인리스트에서 2번째리스트에 0번째단어를 
 
 ```   
 
-
-3/30 day10:return<br>
+<br><br><br>
+3/30 day10<br>
 def 안에 if,return 넣기
 
 ```py
@@ -1372,7 +1384,7 @@ def is_leap(year):
 month_days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
 def days_in_month(year, month):
-	if is_leap(year) and month == 2:   #is_leap(year)이 true and month가 2 일경우에만 29를 리턴해줌. 신기하다 true 와 false는 함수인건강??
+	if is_leap(year) and month == 2:   #is_leap(year)이 true , month=2 true 일경우에만 29를 리턴해줌.
 		return 29
 	return month_days [month - 1]
   
@@ -1382,11 +1394,13 @@ month = int(input("Enter a month: "))
 days = days_in_month(year, month)
 print(days)
 ```
-console<br>
-Enter a year: 2020<br>
-Enter a month: 2<br>
+```
+console
+Enter a year: 2020
+Enter a month: 2
 29
-<br> 
+```
+<br><br>
 
 **퀴즈**
 
@@ -1446,16 +1460,18 @@ calculate={
 	"/":div
 }
 
-num1=(input("what 1?"))
-num2=(input("what 2?"))
+num1=int(input("what 1?"))  #input은 str 으로 받아져서 오류남 int 넣기!!
+num2=int(input("what 2?"))
 
-choose=(input("what do u want?"))
+choose=input("what do u want?")
 #for symbol in calculate:
-symbol = calculate[choose] #여기서오류...
+symbol = calculate[choose] 
 print(symbol)   
 result = symbol(num1, num2)
 print(result)
 ```
+
+<br><br>
 계산기문제 완성본
 ```py
 from replit import clear
@@ -1488,7 +1504,7 @@ def calculator(): #def calculator 안에 for 문과 while 문을 넣음, 보면 
   should_continue = True  #true로 가정함으로써 while문이 시행된건가? ㅇㅇ
 #for문으로 꼭 돌리지 않아도 while 반복을 위해선 true 라는 가정이 필요한거. 그러니까 calculaator()이 함수에 ture 란 스위치를 바로 넣어두됨
  
-  while should_continue:
+  while should_continue: #이상태는 true
     operation_symbol = input("Pick an operation: ")
     num2 = float(input("What's the next number?: "))
     calculation_function = operations[operation_symbol]
@@ -1504,6 +1520,7 @@ def calculator(): #def calculator 안에 for 문과 while 문을 넣음, 보면 
 
 calculator()
 ```
+<br><br>
 혼자 만들어봄
 ```py
 
@@ -1547,7 +1564,7 @@ def calculator():
 calculator()
 
 ```
-
+<br><br><br>
 4/1 blackjak game
 ```py
 
@@ -1567,26 +1584,18 @@ calculator()
 
 import random
 
-#Hint 4: Create a deal_card() function that uses the List below to *return* a random card.
-#11 is the Ace.
+
 
 def deal_card():
 	cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 	card = random.choice(cards)
 	return card
 
-#Hint 6: Create a function called calculate_score() that takes a List of cards as input 
-#and returns the score. 
-#Look up the sum() function to help you do this.
 
-
-#Hint 13: Create a function called compare() and pass in the user_score and computer_score.
-#If the computer and user both have the same score, then it's a draw. If the computer has a blackjack (0), then the user loses. If the user has a blackjack (0), then the user wins. 
-#If the user_score is over 21, then the user loses. If the computer_score is over 21, then the computer loses. If none of the above, then the player with the highest score wins.
 
 #위치틀렸음  score 위에서 있어야 밑에 점수를 가지고 함수가 사용이 된다 
-def compare():  #에러뜸
-	if computer_score == user_score :
+def compare(computer_score,user_score):  #에러뜸 -> 안에 파라미터 빠짐
+	if computer_score == user_score :     #파라미터이름은 함수안에서 동일함, 받아오는 파라미터의 이름은 달라도 상관없음 ex. compare(a,b)
 		return "draw" #return 빼먹음
 	elif computer_score == 0 :	
 		return "lose, opponent has blacjak"
@@ -1603,24 +1612,19 @@ def compare():  #에러뜸
 
 def calculate_score(cards):
 	#user_card 이건 그냥 (cards) 자리에 두면 되는거!!
-#Hint 7: Inside calculate_score() check for a blackjack (a hand with only 2 cards: ace + 10) and return 0 instead of the actual score. 0 will represent a blackjack in our game.
 	if sum(cards) == 21 and len(cards) == 2:
-		return 0
-		
-#Hint 8: Inside calculate_score() check for an 11 (ace). If the score is already over 21, remove the 11 and replace it with a 1. You might need to look up append() and remove().
+		return 0	
 	if 11 in cards and sum(cards) > 21 : #11 in cards and이거 빼먹음
 		cards.remove(11)	#return 1이라고 틀림
 		cards.append(1)
 
 	return sum(cards) 
 
-#Hint 5: Deal the user and computer 2 cards each using deal_card() and append().
 def play_game():
 	user_cards = []
 	computer_cards = []
 	is_game_over = False 
 	
-	#Hint 9: Call calculate_score(). If the computer or the user has a blackjack (0) or if the user's score is over 21, then the game ends.
 	#게임 end 는 스위치로 for문 밑에 넣는다
 	
 	for _ in range(2): #반복해서 리스트에 추가만 할 용도
@@ -1628,7 +1632,7 @@ def play_game():
 		user_cards.append(pick)  # += 은 리스트만 가능, pick과 같이 하나의 수는 append를 이용!
 		computer_cards.append(deal_card()) #이렇게 축약문도 가능
 	
-	while not is_game_over :		
+	while not is_game_over :	#is_game_over 이 true 가 될 때 반복을 멈춘다.	
 		user_score = calculate_score(user_cards)
 		computer_score = calculate_score(computer_cards)
 		print(f" your cards : {user_cards} , score is {user_score}")
@@ -1636,7 +1640,7 @@ def play_game():
 		
 		
 		if user_score == 0 or computer_score ==0 or user_score > 21 : #이거 만들고 폴문 위에 true false 스위치 키 만들기
-			is_game_over = True #true면 게임 오벌되는것. 위에가 false 인것만으로도 게임이 끝날수가있나?ㄴㄴ while문에 넣기!
+			is_game_over = True #true면 게임 오벌되는것. 위에가 false 인것만으로도 게임이 끝날수가있나?ㄴㄴ while문에 넣기! ??
 		else:
 			y = input("'y' to get another card, 'n' to pass ")
 			if y == 'y' :
@@ -1645,22 +1649,84 @@ def play_game():
 			else :
 				is_game_over : True #빼먹음
 	
-	#Hint 10: If the game has not ended, ask the user if they want to draw another card. If yes, then use the deal_card() function to add another card to the user_cards List. If no, then the game has ended.
-	
-	#Hint 11: The score will need to be rechecked with every new card drawn and the checks in Hint 9 need to be repeated until the game ends.
-	
-	#Hint 12: Once the user is done, it's time to let the computer play. 
-	#The computer should keep drawing cards as long as it has a score less than 17.
-	
 	while computer_score != 0 and computer_score < 17 : #stop은 17보다 클때 ?
 		computer_cards.append(deal_card())  #17보다 작으면 한장 더 뽑는건가?
 		computer_score = calculate_score(computer_cards)  
-				
+				b
 	print(compare(computer_score, user_score))
 		
-#Hint 14: Ask the user if they want to restart the game. If they answer yes, clear the console and start a new game of blackjack and show the logo from art.py.
-
 #반복하고싶을때는 지금까지 한 모든 함수들을 또 반복시키는 함수에 집어넣으면됨. ex play_game()
-	while input("you wnat again? 'y' is connet ") == "y" :  #if로 잘못씀
-		play_game()
+
+while input("you waana paly? 'y' is connet ") == "y" :  #if로 잘못씀&시작부분이라 앞에붙히기
+	play_game()
+```
+<br><br><br>
+4/2 local , global scope 개념 퀴즈
+```py
+1.def a_function(a_parameter):
+    a_variable = 15
+    return a_parameter
+ 
+a_function(10)
+print(a_variable)
+
+답: name error
+
+```
+
+
+```py
+def mutate(a_list):
+  b_list = []
+  for item in a_list:
+    new_item = item * 2
+    b_list.append(new_item)
+  print(b_list) #def 안에만 있는 상태
+
+mutate([1,2,3,5,8,13])
+```
+```
+console
+[2, 4, 6, 10, 16, 26]
+```
+<br><br>
+4/4 숫자맞추기게임
+```py
+import random
+
+
+type = input("welcome , choose type 'easy' or 'hard'.")
+
+random2=int(random.randint(1,101))
+print(random2)
+number = int(input("make a guess."))
+
+if type == 'easy':
+	attempts = 5
+if type == 'hard':   #위 if문에 속하게 되면 type으로 hard를 넣었을경우 easy만 읽고 넘어가서 attempts는 없는게 됨
+	attempts = 10
+
+for _ in range(0,int(attempts)):
+	attempts = attempts-1
+	if random2>number : 
+		print(f"too low.  you have {attempts} attempts.")
+	elif random2<number :
+		print(f"too higt. you have {attempts} attempts.")
+	elif random2==number :    #elif*
+		print("good.")
+		break   
+	number = int(input("make a guess."))
+
+  ```
+```
+console
+
+welcome , choose type 'easy' or 'hard'.easy
+98
+make a guess.99
+too higt. you have 4 attempts.
+make a guess.97
+too low.  you have 3 attempts.
+make a guess.98
+good.
 ```
