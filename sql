@@ -119,5 +119,75 @@ select * from instructor;
 
 --- (24) Add a new tuple to student  with tot_creds set to null
                  insert into student  values ('3003', 'Green', 'Finance', null);
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+----------------
+
+#복합질의
+4. 진료금액이 5만원 이상인 동물의 보호자 명을 구해라. 
+SELECT patient.name
+FROM patient , medical
+WHERE  patient.patientnumber = medical.patientnumber
+ and medical.price > 50000;
+
+
+
+5. 진료금액이 15000원이나온 보호자의 이름과 질병을 구해라    
+select patient.name , medical.disease
+from patient,medical
+where patient.patientnumber = medical.patientnumber
+and price=15000 ;
+
+
+6. 보호자 천수정의 담당의사 이름은?  *스칼라복합질의사용 (select 안에 select 문 사용 : 보통 어그리게이션 함수에 대해 많이 사용하긴함)
+select p.patientnumber , p.name ,(select d.name 
+from doctor d 
+where d.doctor_number=p.doctor_number)'담당의'
+from patient p
+group by p.patientnumber
+having p.name like '천수정'; 	#having 그룹조건절로 groub by 연산값에만 사용이 가능한줄알았는데 , 연결된 다른 애트리뷰트에 대해서도 적용이 가능하다!!
+
+
+
+# aggregation 함수질의 
+7. 가장 비싼 진료비를 낸 동물의 종류는
+select animal.animaltype 
+from  medical , animal
+where medical.patientnumber = animal.patientnumber and
+medical.price = (select max(price)
+from medical) ;
+
+    
+
+8. 장염에 평균 진료금액은?
+select disease, avg (price) as '평균진료비'
+from medical
+where disease LIKE '장염'
+group by disease ;
+
+
+9. 평균 진료비용보다 작은비용의 병명과 비용
+SELECT 	disease , price  
+FROM 	medical
+WHERE 	price <= (SELECT AVG(price)
+					FROM medical);
+                    
+10. 진료를 2번 이상 받은 환자의 번호와 이름은
+select patient.patientnumber , patient.name
+from patient
+where patient.patientnumber = (select patientnumber
+from medical
+group by patientnumber
+HAVING COUNT(patientnumber)>=2 ) ; 
+
+12. 동물병원의 10주년 이벤트를 위해 각 개업으로부터 10주년뒤에 날짜를 구하여라.
+select name, opendate, adddate(opendate, interval 10 year)
+from hospital;
 
 
